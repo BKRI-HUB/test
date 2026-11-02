@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>قلب متحرك</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="stage">
+    <div class="heart-wrap">
+      <!-- القلب (SVG) -->
+      <svg class="heart" viewBox="0 0 32 29" aria-label="heart">
+        <path d="M23.6,1.1c-3.2,0-5.1,2-6.1,3.6C16.5,3.1,14.6,1.1,11.4,1.1
+                 C7.5,1.1,5,4.1,5,7.7c0,6.2,7.7,11.7,12.5,15.2
+                 C22.3,19.4,30,13.9,30,7.7C30,4.1,27.5,1.1,23.6,1.1z" />
+      </svg>
+
+      <!-- الكلام فوق/جنب القلب -->
+      <div class="text">
+        <div class="line1">💖</div>
+        <div class="line2" id="msg"> </div>
+      </div>
+    </div>
+
+    <!-- أزرار/حركات اختيارية -->
+    <button class="btn" id="btn">اضغط لتغيير الكلام</button>
+  </div>
+
+  <script>
+    const messages = [
+      "تبا لكم كل يوم وأكثر 💞",
+      "تبا لكم أقوى من قبل ✨",
+      "تبا لكم وللعبتكم  ",
+      "اي لوف يو"
+    ];
+    let i = 0;
+
+    document.getElementById("btn").addEventListener("click", () => {
+      i = (i + 1) % messages.length;
+      const el = document.getElementById("msg");
+      el.classList.remove("pop");
+      void el.offsetWidth; // إعادة تشغيل الأنيميشن
+      el.textContent = messages[i];
+      el.classList.add("pop");
+    });
+  </script>
+</body>
+</html>
